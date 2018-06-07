@@ -14,6 +14,7 @@ namespace :admin do
 
   resources 'deposits/:currency',  to: AdminDepositsRouter.new,  as: 'deposit'
   resources 'withdraws/:currency', to: AdminWithdrawsRouter.new, as: 'withdraw'
+  resources 'wallets/:currency', to: AdminWalletRouter.new, as: 'wallet'
 
   namespace :statistic do
     resource :members, only: :show

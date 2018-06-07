@@ -79,6 +79,7 @@
         </li>
       <% end %>
 
+
       <% if can? :menu, Withdraw %>
         <li class="list-icon-item <%= check_active('withdraws') %>">
           <%= link_to "javascript:void(0);", class: 'has-arrow waves-effect waves-dark has-sub-menu', 'aria-expanded': "false", data: { toggle: 'popover' } do %>
@@ -94,6 +95,27 @@
           </div>
         </li>
       <% end %>
+
+      <!--6/7/2018 10:27 PM topdev
+      -->
+      <% if can? :menu, Account %>
+        <li class="list-icon-item <%= check_active('wallets') %>">
+          <%= link_to "javascript:void(0);", class: 'has-arrow waves-effect waves-dark has-sub-menu', 'aria-expanded': 'false', data: {toggle: 'popover'} do %>
+          <i class="icon fa fa-superpowers"></i>
+          <span class="menu-text">Wallet Manage</span>
+      <% end %>
+      <div class="sub-menu hidden">
+        <ul class="list-unstyled list-menu mb-0">
+          <% Currency.order(id: :asc).pluck(:code).each do |c| %>
+            <li><%= link_to c.upcase, admin_wallet_index_path(c) %></li>
+          <% end %>
+        </ul>
+      </div>
+      </li>
+      <% end %>
+
+      <!-- 6/7/2018 10:27 PM topdev
+      -->
 
       <% if can? :manage, Member %>
         <li class="list-icon-item <% check_active('members') %>">
